@@ -50,7 +50,16 @@ class UserController {
     //função para listar usuário por id
     async getById(req: Request, res: Response) {
         const userId = req.params.id;
-        const user = await prisma.users.findUnique({where: { id_user: userId } });
+        const id = parseInt(userId);
+
+        const user = await prisma.users.findUnique({where: { id_user: id } });
+        return res.json(user);
+    }
+
+    //função para listar usuario por email
+    async getByEmail(req: Request, res: Response) {
+        const userEmail = req.params.email;
+        const user = await prisma.users.findUnique({where: { user_email: userEmail } });
         return res.json(user);
     }
 
