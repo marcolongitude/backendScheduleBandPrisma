@@ -98,9 +98,6 @@ class UserController {
             data: req.body
         });
 
-        console.log('xxxxxxxxxxxxxxxx')
-        console.log(response)
-
         // return res.json({ id_usuarios, nome_usuarios, email_usuarios });
         if(response){
             return res.status(200).json('Dados atualizados com sucesso!');
