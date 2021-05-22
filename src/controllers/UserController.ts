@@ -47,6 +47,13 @@ class UserController {
         return res.json(allUsers);
     }
     
+    //função para listar usuário por id
+    async getById(req: Request, res: Response) {
+        const userId = req.params.id;
+        const user = await prisma.users.findUnique({where: { id_user: userId } });
+        return res.json(user);
+    }
+
     //função atualizar dados do usuario
     async update(req: Request, res: Response) {
 
