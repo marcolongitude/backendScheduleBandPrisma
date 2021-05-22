@@ -100,18 +100,19 @@ class UserController {
             return res.status(401).json({ error: "Password does not match " });
         }
 
-        req.body.password_hash = await bcrypt.hash(req.body.password, 8);
+        const password_hash = await bcrypt.hash(req.body.password, 8);
+        const UserId = parseInt(req.params.id);
 
-        const UserId = req.body.userId;
-
-        delete req.body.oldPassword;
-        delete req.body.password;
-        delete req.body.confirmPassword;
-        delete req.body.userId;
+        const dataUser = {
+            user_name: req.body.user_name,
+            user_email: req.body.user_email,
+            password_hash: password_hash,
+            user_permission: req.body.user_permission
+        }
 
         const response = await prisma.users.update({
             where: {id_user: UserId},
-            data: req.body
+            data: dataUser
         });
 
         // return res.json({ id_usuarios, nome_usuarios, email_usuarios });
