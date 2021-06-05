@@ -34,6 +34,11 @@ class BandController {
         return res.json({ id_band, band_name });
     }
 
+    async getAll(req: Request, res: Response) {
+      const allBands = await prisma.bands.findMany();
+      return res.json(allBands);
+    }
+
 }
 
 export default new BandController();
