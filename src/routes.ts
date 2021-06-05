@@ -24,5 +24,6 @@ routes.put('/users/:id', userController.update);
 
 //Band routes
 routes.post('/bands', BandController.create);
+routes.get('/bands', BandController.getAll)
 
 export default routes;
